@@ -5,7 +5,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Hydrosploit/Celestial
 
 local Executor = identifyexecutor()
 if Executor == "Solara" or "Celery" then
-    game.Players.LocalPlayer:Kick("Solara is temporarily disabled due to issues")
+    game.Players.LocalPlayer:Kick("Your executor is temporarily disabled due to issues")
 end
 
 --// Discord Invite
