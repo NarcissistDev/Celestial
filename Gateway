@@ -1,7 +1,12 @@
 --// Webhook Message
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Hydrosploit/Celestial/main/Exe-Log"))()
 
+--// Disabled Executor
 
+local Executor = identifyexecutor()
+if Executor == "Solara" or "Celery" then
+    game.Players.LocalPlayer:Kick("Solara is temporarily disabled due to issues")
+end
 
 --// Discord Invite
 pcall(function()
