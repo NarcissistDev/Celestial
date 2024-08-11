@@ -1,4 +1,11 @@
+local Executor = identifyexecutor()
+local supportedExecutors = {
+	Celery = true,
+}
 
+if supportedExecutors[Executor] then
+game.Players.LocalPlayer:Kick("Celery is shit.. Please use a different executor.")
+end
 
 --// Discord Invite
 pcall(function()
