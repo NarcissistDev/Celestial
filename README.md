@@ -17,3 +17,5 @@ CelestialHub is a powerful and user-friendly Lua script hub designed for Roblox.
 - **itsjusnix**: For the Discord bot and website.
 
 For any issues or support, please refer to our Discord community.
+
+![image](https://github.com/user-attachments/assets/d6e992af-bcd9-4d45-87c5-4e0ba7cce4b4)
