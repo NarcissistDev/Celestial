@@ -53,5 +53,11 @@ else
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Hydrosploit/Celestial/main/KAT_Public.lua"))() --// Normal Version
 
 end
+
+else
+	warn("Unsupported Game, Please Refer To Our Discord For A List Of Our Supported Games!")
+
+	return
+
 end
 
