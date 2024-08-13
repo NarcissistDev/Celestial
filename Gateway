@@ -5,6 +5,7 @@ local supportedExecutors = {
 
 if supportedExecutors[Executor] then
 game.Players.LocalPlayer:Kick("Celery is shit.. Please use a different executor.")
+return
 end
 
 --// Discord Invite
