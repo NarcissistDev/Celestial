@@ -1,0 +1,22 @@
+-- Define the expected loadstring for verification
+local expectedLoadstring = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/NarcissistDev/Celestial/main/test1.lua"))()'
+
+-- Function to check if the loadstring is correct
+local function checkLoadstring()
+    -- Get the source of the script that called this function
+    local currentScriptSource = debug.getinfo(2, "S").source
+
+    -- If the source is correct, allow execution; otherwise, kick the player
+    if currentScriptSource:find(expectedLoadstring, 1, true) then
+        -- Put the actual code that should run if the loadstring is correct
+        print("Loadstring verified. Executing the script...")
+
+        -- [Place your actual script code here]
+    else
+        -- Kick the player if the loadstring is modified
+        game.Players.LocalPlayer:Kick("Modified loadstring detected.")
+    end
+end
+
+-- Call the function to check the loadstring and execute the script if valid
+checkLoadstring()
