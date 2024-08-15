@@ -30,7 +30,8 @@ end)
 
 --// Game Checker
 if game.PlaceId == 142823291 then -- MM2 Normal & Disguises
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/NarcissistDev/Celestial/main/MM2"))()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/NarcissistDev/Auth/main/License_Checker2', true))() --# License Checker
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/NarcissistDev/Celestial/main/MM2"))() --# Main Load
 elseif game.PlaceId == 5006801542 or game.PlaceId == 860428890 or game.PlaceId == 379614936 then -- Assassin, Pro & FreePlay
     loadstring(game:HttpGet("https://raw.githubusercontent.com/NarcissistDev/Celestial/main/Assassin"))() 
 elseif game.PlaceId == 537413528 then -- Build A Boat For Treasure
