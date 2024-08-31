@@ -1,0 +1,116 @@
+
+if getgenv().PublicKey == "Default" then
+
+    spawn(function()
+        wait(2.5)
+        getgenv().PublicKey = nil
+    end)
+    
+    
+    
+    local StartAuth = tick()
+    
+    if getgenv().Authentication then 
+        warn("Ratelimit Triggered, Please Try Again In 30 Seconds.") 
+        return 
+    else 
+        getgenv().Authentication = true
+        spawn(function() 
+            wait(30) 
+            getgenv().Authentication = false 
+        end) 
+    end
+    
+    repeat
+        wait(0.5)
+    until game:IsLoaded()
+    
+    wait(1)
+    
+    print("Authenticating...")
+    
+    
+    local BannedHWIDs
+    local success, errorMessage = pcall(function()
+        BannedHWIDs = loadstring(game:HttpGet("https://raw.githubusercontent.com/NarcissistDev/Auth/main/Blacklist1"))()
+    end)
+    
+    if not success then
+        warn("Authentication Failed, Unable To Fetch Ban Data.")
+    
+        return
+    
+    end
+    
+    local AnalyticsService = game:GetService("RbxAnalyticsService")
+    local userHWID = AnalyticsService:GetClientId()
+    local Version = loadstring(game:HttpGet("https://celestialscript.store/Auth/MainVersion.lua"))()
+    
+    for _, bannedHWID in ipairs(BannedHWIDs) do
+        if bannedHWID == userHWID then
+            task.wait(1)
+    
+            print("Authentication Failed, Error Code: 403")
+            game.Players.LocalPlayer:Kick("You are banned from CelestialHub")
+    
+            task.wait(.5)
+    
+            while true do end
+            return
+        end
+    end
+    
+    wait(math.random() + 1)
+    
+    local EndAuth = tick()
+    local duration = EndAuth - StartAuth
+    
+    print(string.format("Authenticated successfully in %.2f seconds", duration))
+    
+    wait(math.random() + 1)
+    
+    print("Unloading..")
+    
+    warn("No Connection Detected. Waiting For Connection...")
+    
+    wait(3)
+    
+    print(Version)
+    
+    
+    getgenv().AuthStart = true
+    
+    if getgenv().AuthStart then
+        spawn(function()
+            task.wait(5)
+            getgenv().AuthStart = nil
+        end)
+    end
+    print("Connection Accepted")
+    
+    wait(0.4)
+    
+    loadstring(game:HttpGet("https://celestialscript.store/Auth/GatewayMain.lua"))()
+    
+elseif getgenv().PublicKey ~= "" and getgenv().PublicKey ~= "Default" then
+    
+
+script_key=getgenv().PublicKey;
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/69d756f812e7194abff95633747e28a5.lua"))()
+
+
+else
+    
+        print("Authentication Failed, Error Code: 403")
+        game.Players.LocalPlayer:Kick("Modified Loadstring Detected. Please Use The Official Loadstring From https://celestialscript.store")
+    
+        task.wait(.5)
+    
+        while true do end
+        return
+    
+    end
+    
+    
+    
+    
