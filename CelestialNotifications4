@@ -87,20 +87,20 @@ function NotificationModule.Notify(Name, Msg, Duration, ThemeColor)
     ProgressBar.Position = UDim2.new(0, 0, 1, -3)
     ProgressBar.Size = UDim2.new(0, 0, 0, 3)
 
-    table.insert(_G.activeNotifications, Main)
+    local totalHeight = (#_G.activeNotifications) * (Main.Size.Y.Offset + 10)
+    Main.Position = UDim2.new(1, 170, 1, -20 - totalHeight)
 
-    local initialYPos = UDim2.new(1, 170, 1, -20 - (#_G.activeNotifications - 1) * (Main.Size.Y.Offset + 10))
-    Main.Position = initialYPos
+    table.insert(_G.activeNotifications, 1, Main)
 
     for i, activeNoti in ipairs(_G.activeNotifications) do
-        local newYPos = UDim2.new(1, -20, 1, -20 - (Main.Size.Y.Offset + 10) * (i - 1))
+        local newYPos = UDim2.new(1, -20, 1, -20 - (Main.Size.Y.Offset + 10) * (#_G.activeNotifications - i))
         TweenService:Create(activeNoti, TweenInfo.new(0.2, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
             Position = newYPos
         }):Play()
     end
 
     local tweenIn = TweenService:Create(Main, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
-        Position = UDim2.new(1, -20, 1, -20 - (#_G.activeNotifications - 1) * (Main.Size.Y.Offset + 10))
+        Position = UDim2.new(1, -20, 1, -20)
     })
     tweenIn:Play()
     tweenIn.Completed:Wait()
@@ -128,7 +128,7 @@ function NotificationModule.Notify(Name, Msg, Duration, ThemeColor)
     end
 
     for i, activeNoti in ipairs(_G.activeNotifications) do
-        local newYPos = UDim2.new(1, -20, 1, -20 - (Main.Size.Y.Offset + 10) * (i - 1))
+        local newYPos = UDim2.new(1, -20, 1, -20 - (Main.Size.Y.Offset + 10) * (#_G.activeNotifications - i))
         TweenService:Create(activeNoti, TweenInfo.new(0.2, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
             Position = newYPos
         }):Play()
