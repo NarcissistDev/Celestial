@@ -1,4 +1,3 @@
--- Initialize the global notifications table if it doesn't already exist
 _G.activeNotifications = _G.activeNotifications or {}
 
 local NotificationModule = {}
@@ -88,7 +87,6 @@ function NotificationModule.Notify(Name, Msg, Duration, ThemeColor)
     ProgressBar.Position = UDim2.new(0, 0, 1, -3)
     ProgressBar.Size = UDim2.new(0, 0, 0, 3)
 
-    -- Function to adjust notification positions
     local function adjustNotificationPositions()
         for i, activeNoti in ipairs(_G.activeNotifications) do
             local newYPos = UDim2.new(1, -20, 1, -20 - (Main.Size.Y.Offset + 10) * (i - 1))
@@ -98,18 +96,15 @@ function NotificationModule.Notify(Name, Msg, Duration, ThemeColor)
         end
     end
 
-    -- Add the new notification to the list and adjust positions
     table.insert(_G.activeNotifications, Main)
     adjustNotificationPositions()
 
-    -- Tween to show the notification
     local tweenIn = TweenService:Create(Main, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
         Position = UDim2.new(1, -20, 1, -20)
     })
     tweenIn:Play()
     tweenIn.Completed:Wait()
 
-    -- Tween the progress bar over the duration
     local progressTween = TweenService:Create(ProgressBar, TweenInfo.new(Duration, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {
         Size = UDim2.new(1, 0, 0, 3)
     })
@@ -117,7 +112,6 @@ function NotificationModule.Notify(Name, Msg, Duration, ThemeColor)
 
     task.wait(Duration)
 
-    -- Tween to hide the notification
     local tweenOut = TweenService:Create(Main, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {
         Position = UDim2.new(1, 170, 1, -20)
     })
@@ -126,7 +120,6 @@ function NotificationModule.Notify(Name, Msg, Duration, ThemeColor)
 
     Noti:Destroy()
 
-    -- Remove the notification from the global list
     for i, activeNoti in ipairs(_G.activeNotifications) do
         if activeNoti == Main then
             table.remove(_G.activeNotifications, i)
@@ -134,7 +127,6 @@ function NotificationModule.Notify(Name, Msg, Duration, ThemeColor)
         end
     end
 
-    -- Adjust positions after removing the notification
     adjustNotificationPositions()
 end
 
