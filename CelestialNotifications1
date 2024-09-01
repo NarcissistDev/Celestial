@@ -1,6 +1,6 @@
 local NotificationModule = {}
+NotificationModule.activeNotifications = {}  -- Make the table a part of the module
 
-local activeNotifications = {}
 local TweenService = game:GetService("TweenService")
 local CoreGui = game:GetService("CoreGui")
 
@@ -87,21 +87,24 @@ function NotificationModule.Notify(Name, Msg, Duration, ThemeColor)
     ProgressBar.Position = UDim2.new(0, 0, 1, -3) 
     ProgressBar.Size = UDim2.new(0, 0, 0, 3) 
 
-    for i, activeNoti in ipairs(activeNotifications) do
+    -- Adjust positions of existing notifications
+    for i, activeNoti in ipairs(NotificationModule.activeNotifications) do
         local newYPos = UDim2.new(1, -20, 1, -20 - (Main.Size.Y.Offset + 10) * i)
         TweenService:Create(activeNoti, TweenInfo.new(0.2, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
             Position = newYPos
         }):Play()
     end
 
-    table.insert(activeNotifications, Main)
+    table.insert(NotificationModule.activeNotifications, Main)
 
+    -- Tween to show the notification
     local tweenIn = TweenService:Create(Main, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
         Position = UDim2.new(1, -20, 1, -20)
     })
     tweenIn:Play()
     tweenIn.Completed:Wait()
 
+    -- Tween the progress bar over the duration
     local progressTween = TweenService:Create(ProgressBar, TweenInfo.new(Duration, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), {
         Size = UDim2.new(1, 0, 0, 3)
     })
@@ -109,6 +112,7 @@ function NotificationModule.Notify(Name, Msg, Duration, ThemeColor)
 
     task.wait(Duration)
 
+    -- Tween to hide the notification
     local tweenOut = TweenService:Create(Main, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {
         Position = UDim2.new(1, 170, 1, -20)
     })
@@ -117,14 +121,16 @@ function NotificationModule.Notify(Name, Msg, Duration, ThemeColor)
 
     Noti:Destroy()
 
-    for i, activeNoti in ipairs(activeNotifications) do
+    -- Remove the notification from the list
+    for i, activeNoti in ipairs(NotificationModule.activeNotifications) do
         if activeNoti == Main then
-            table.remove(activeNotifications, i)
+            table.remove(NotificationModule.activeNotifications, i)
             break
         end
     end
 
-    for i, activeNoti in ipairs(activeNotifications) do
+    -- Adjust positions after removing the notification
+    for i, activeNoti in ipairs(NotificationModule.activeNotifications) do
         local newYPos = UDim2.new(1, -20, 1, -20 - (Main.Size.Y.Offset + 10) * (i - 1))
         TweenService:Create(activeNoti, TweenInfo.new(0.2, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
             Position = newYPos
