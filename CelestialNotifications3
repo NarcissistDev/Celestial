@@ -89,13 +89,18 @@ function NotificationModule.Notify(Name, Msg, Duration, ThemeColor)
 
     table.insert(_G.activeNotifications, Main)
 
+    local initialYPos = UDim2.new(1, 170, 1, -20 - (#_G.activeNotifications - 1) * (Main.Size.Y.Offset + 10))
+    Main.Position = initialYPos
+
     for i, activeNoti in ipairs(_G.activeNotifications) do
         local newYPos = UDim2.new(1, -20, 1, -20 - (Main.Size.Y.Offset + 10) * (i - 1))
-        activeNoti.Position = newYPos
+        TweenService:Create(activeNoti, TweenInfo.new(0.2, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+            Position = newYPos
+        }):Play()
     end
 
     local tweenIn = TweenService:Create(Main, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
-        Position = UDim2.new(1, -20, 1, -20)
+        Position = UDim2.new(1, -20, 1, -20 - (#_G.activeNotifications - 1) * (Main.Size.Y.Offset + 10))
     })
     tweenIn:Play()
     tweenIn.Completed:Wait()
