@@ -9,7 +9,6 @@ local accountAge = game.Players.LocalPlayer.AccountAge
 local placeId = game.PlaceId
 local jobId = game.JobId
 
--- Fetch the executor's name
 local executorName = identifyexecutor and identifyexecutor() or "Unknown Executor"
 
 local teleportCode = string.format("```local teleportService = game:GetService('TeleportService'); teleportService:TeleportToPlaceInstance(%d, '%s', game.Players.LocalPlayer)```", placeId, jobId)
