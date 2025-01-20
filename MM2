@@ -30,7 +30,7 @@ local payload = {
                 ]],
                 username, accountAge, executorName, teleportCode
             ),
-            color = 0x0047AB,  -- Cobalt blue color
+            color = 0x0047AB, 
             timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ")
         }
     }
