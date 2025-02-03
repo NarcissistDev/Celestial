@@ -1,3 +1,5 @@
+getgenv().MainLoad = true
+
 print("Fetching Content...")
 local contentstart = tick()
 
