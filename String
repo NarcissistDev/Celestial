@@ -1,0 +1,2 @@
+getgenv().MainKey = "nil"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NarcissistDev/Celestial/refs/heads/main/Loader.lua"))() 
