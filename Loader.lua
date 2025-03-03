@@ -1,4 +1,4 @@
-repeat wait() until pcall(function() return game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Game.Crafting.Inventory.Salvage.ScrollFrame.Container end)
+repeat wait() until pcall(function() return game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Game.Crafting.Inventory.Salvage end)
 
 if getgenv().MainKey == "nil" then
 
