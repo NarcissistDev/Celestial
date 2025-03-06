@@ -1,12 +1,13 @@
-repeat wait() until pcall(function() return game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Game.Crafting.Inventory.Salvage end)
-
 if getgenv().MainKey == "nil" then
 
    getgenv().MainLoad = true
     
     --// Game Checker
     if game.PlaceId == 142823291 then -- MM2 Normal & Disguises
-
+      
+        repeat wait() until pcall(function() return game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Game.Crafting.Inventory.Salvage end)
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NarcissistDev/Resources/refs/heads/main/TestEnvironment"))()
+      
         loadstring(game:HttpGet("https://raw.githubusercontent.com/NarcissistDev/Celestial/main/MM2"))() --# Main Load
     
     else
